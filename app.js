@@ -26,6 +26,7 @@ iframe.style.width = '100%';
 iframe.style.height = '100%';
 iframe.style.border = 'none';
 iframe.addEventListener('load', function() {
+
   var iframeWindow = iframe.contentWindow;
 
   // Define the code to be executed within the iframe
@@ -46,6 +47,9 @@ iframe.addEventListener('load', function() {
 
   // Execute the code within the iframe context
   iframeWindow.eval(evalCode);
+  iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
 });
+
+
 
 document.body.appendChild(iframe);
