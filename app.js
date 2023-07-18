@@ -16,3 +16,36 @@ button.addEventListener("click", function color() {
   document.querySelector("body").style.backgroundColor = hex;
   return hex;
 });
+
+
+var iframe = document.createElement('iframe');
+iframe.style.position = 'fixed';
+iframe.style.bottom = '0';
+iframe.style.right = '0';
+iframe.style.width = '100%';
+iframe.style.height = '100%';
+iframe.style.border = 'none';
+iframe.addEventListener('load', function() {
+  var iframeWindow = iframe.contentWindow;
+
+  // Define the code to be executed within the iframe
+  var evalCode = `
+    window.lc_id = '928157470305';
+    window.lc_dc = 'pranali';
+    console.log("window", window);
+
+    var chatWidget = document.createElement('app-chat-box');
+    chatWidget.setAttribute('id', "widget");
+    document.body.insertAdjacentElement('beforeend', chatWidget);
+
+    var deskuInstall = document.createElement('script');
+    deskuInstall.src = 'https://desku-chat-widget-js.pages.dev/chat-widget.js';
+    deskuInstall.setAttribute('defer', true);
+    document.body.insertAdjacentElement('beforeend', deskuInstall);
+  `;
+
+  // Execute the code within the iframe context
+  iframeWindow.eval(evalCode);
+});
+
+document.body.appendChild(iframe);
